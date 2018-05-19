@@ -1,0 +1,36 @@
+.WeeklyCalendar {
+  background: #eee;
+}
+
+.WeeklyCalendar-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.WeeklyCalendar-table th {
+  text-align: center;
+}
+
+.WeeklyCalendar-table th,
+.WeeklyCalendar-table td {
+  border: 2px solid #fff;
+  padding: 4px 8px;
+}
+
+.WeeklyCalendar-table-tr-th-local {
+  background-color: #add8e6;
+}
+
+table thead tr th:first-child, table thead tr th:last-child {
+  background-color: white;
+}
+
+table thead tr th:first-child:hover, table thead tr th:last-child:hover {
+  color: #add8e6;
+  text-align: center;
+  cursor: pointer;
+}
+
+.App-title {
+  text-align: center;
+}
