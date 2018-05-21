@@ -34,3 +34,15 @@ table thead tr th:first-child:hover, table thead tr th:last-child:hover {
 .App-title {
   text-align: center;
 }
+
+.Td-week:hover {
+  background-color: #add8e6;
+  opacity: 0.3;
+  cursor: pointer;
+}
+
+.Delete-Button {
+  padding: 5px;
+  margin-right: 2px;
+  cursor: pointer;
+}

@@ -11,6 +11,8 @@ export default class WeeklyCalendar extends Component {
     overscanAfter: 1,
     renderRowLabel: (row) => null,
     renderWeekCell: (row, weekYear, weekNumber) => null,
+    addPlan: (weekYear, weekNumber, id) => null,
+    removeUser: (name, id) => null,
   };
 
   state = {
@@ -40,7 +42,9 @@ export default class WeeklyCalendar extends Component {
       renderWeekCell,
       renderRowLabel,
       overscanBefore,
-      overscanAfter
+      overscanAfter,
+      addPlan,
+      removeUser
     } = this.props;
 
     const { targetDateTime } = this.state;
@@ -64,8 +68,8 @@ export default class WeeklyCalendar extends Component {
                                             let localDay = DateTime.local().day;
                                             let firstDayWeek = day - (weekday-1);
                                             let lastDayWeek = firstDayWeek + 6;
-                                            console.log(targetDateTime);
-                                            console.log(DateTime.local().day);
+                                            //console.log(targetDateTime);
+                                            //console.log(DateTime.local().day);
                                             if (lastDayWeek > daysInMonth) {
                                               lastDayWeek = lastDayWeek - daysInMonth;
                                             }
@@ -88,8 +92,8 @@ export default class WeeklyCalendar extends Component {
         <tbody>
           {rows.map(row =>
                     <tr>
-                      <td onClick={ () => alert('Modificare nome') } >{renderRowLabel(row)}</td>
-                      {visibleWeeks.map(d => (<td onClick={ () => alert('Inserisci plan') } >{renderWeekCell(row, d.weekYear, d.weekNumber)}</td>))}
+                      <td><button onClick={ () => removeUser(row.name, row.id) } className="Delete-Button">Elimina</button> {renderRowLabel(row)}</td>
+                      {visibleWeeks.map(d => (<td className="Td-week" onClick={ () => addPlan(d.weekYear, d.weekNumber, row.id) } >{renderWeekCell(row, d.weekYear, d.weekNumber)}</td>))}
                       <td>--</td>
                     </tr>
                     )}
