@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 import './App.css';
 import WeeklyCalendar from './WeeklyCalendar'
-
+import Button from '@material-ui/core/Button';
 
 class App extends Component {
   state = {
     humans: [
-      /*{ id: 1, name: 'Domenico' },
+      { id: 1, name: 'Domenico' },
       { id: 2, name: 'Pier' },
       { id: 3, name: 'Gianpietro' },
       { id: 4, name: 'Carlo' },
-      { id: 5, name: 'Roberto' },*/
+      { id: 5, name: 'Roberto' },
     ],
     plans: [
-      /*{ assignee: 1, weekYear: 2018, weekNumber: 21, project: 'ABF' },
-      { assignee: 2, weekYear: 2018, weekNumber: 20, project: 'R&D' }*/
+      /*{ assignee: 1, weekYear: 2018, weekNumber: 21, project: <div className="Single-Plan">ABF</div> },
+      { assignee: 2, weekYear: 2018, weekNumber: 20, project: <div className="Single-Plan">R&D</div> }*/
     ],
     valueBefore: 1,
     valueAfter: 1
@@ -33,12 +33,15 @@ class App extends Component {
     if (name == null || name === "")
       return;
     else {
-      let list = this.state.plans.concat({ assignee: id, weekYear: weekYear, weekNumber: weekNumber, project: name });
+      let list = this.state.plans.concat({ assignee: id
+                                         , weekYear: weekYear
+                                         , weekNumber: weekNumber
+                                         , project: <div className="Single-Plan">{name}</div> });
       this.setState({ plans: list });
     }
   }
 
-  addUser = () => {
+  addNewUser = () => {
     const { humans } = this.state;
     var name = prompt("Inserisci il nome del nuovo utente: ");
     if( name == null || name === "")
@@ -65,32 +68,24 @@ class App extends Component {
 
   removeUsers = (name, id) => {
       const { humans } = this.state;
-      //console.log(humans);
       var pos=-1;
 
       for(var i = 0; i<humans.length; i++ ){
-        //console.log(humans[i].id, "===", id);
         if(humans[i].id === id){
           pos=i;
           break;
         }
       }
-      //console.log("indexOf: ", pos);
       var sliced = humans.slice(0,pos);
-      //console.log("sliced: ", sliced);
       var list = [];
       var k = 0;
-      //console.log("humans.length: ",humans.length);
       for(i = pos+1; i<humans.length; i++ ){
         list[k]=humans[i];
         k++;
       }
-      //console.log(list);
       var newList = sliced.concat(list);
-      //console.log(newList);
       this.setState({ humans: newList });
   }
-
 
   render() {
     return (
@@ -99,9 +94,9 @@ class App extends Component {
           <h1 className="App-title">Calendar planner</h1>
         </header>
         <div className="App-bar">
-          <button className="App-button" onClick={this.addUser}>Aggiungi utente</button>
-          <button className="App-button" onClick={this.addWeeksView} >+</button>
-          <button className="App-button" onClick={this.removeWeeksView}>-</button>
+          <Button variant="raised" mini color="default" onClick={this.addNewUser}>Add user</Button>
+          <Button variant="raised" mini color="default" onClick={this.removeWeeksView}>Zoom +</Button>
+          <Button variant="raised" mini color="default" onClick={this.addWeeksView}>Zoom -</Button>
         </div>
         <WeeklyCalendar
           rows={this.state.humans}

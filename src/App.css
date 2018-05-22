@@ -6,9 +6,12 @@
 }
 
 .App-button  {
-  padding: 10px;
   margin-right: 5px;
-  background-color: transparent;
-  border: 1px solid black;
-  cursor: pointer;
+}
+
+.Single-Plan {
+  background-color: #39d45a69;
+  margin: 5px;
+  padding: 2px;
+  box-shadow: 2px 2px 1px 0px #999999c7;
 }

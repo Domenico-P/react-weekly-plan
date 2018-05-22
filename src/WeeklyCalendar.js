@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { DateTime } from 'luxon';
-
 import './WeeklyCalendar.css';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 export default class WeeklyCalendar extends Component {
 
   static defaultProps = {
     rows: [],
-    overscanBefore: 1,
-    overscanAfter: 1,
+    overscanBefore: null,
+    overscanAfter: null,
     renderRowLabel: (row) => null,
     renderWeekCell: (row, weekYear, weekNumber) => null,
     addPlan: (weekYear, weekNumber, id) => null,
@@ -47,6 +48,18 @@ export default class WeeklyCalendar extends Component {
       return;
   }
 
+  scrollChange = (e) => {
+    e.preventDefault();
+    if(e.deltaX < 0){
+      this.handleMoveForward(e);
+    }
+    else if(e.deltaX > 0){
+      this.handleMoveBackward(e);
+    }
+    else
+      return;
+  }
+
   render() {
 
     const {
@@ -60,7 +73,6 @@ export default class WeeklyCalendar extends Component {
     } = this.props;
 
     const { targetDateTime } = this.state;
-
     const visibleWeeks = [];
 
     for (let overscan = -overscanBefore; overscan <= overscanAfter; overscan += 1) {
@@ -68,7 +80,7 @@ export default class WeeklyCalendar extends Component {
     }
 
     return <div className="WeeklyCalendar">
-      <table className="WeeklyCalendar-table" onKeyDown={this.keyPressed} tabIndex="0">
+      <table id="scroll" className="WeeklyCalendar-table" onKeyDown={this.keyPressed} onWheel={this.scrollChange} tabIndex="0">
         <thead>
           <tr>
             <th onClick={this.handleMoveBackward}>
@@ -76,8 +88,8 @@ export default class WeeklyCalendar extends Component {
               <line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline>
             </svg>
             </th>
-            {visibleWeeks.map(dateTime => { const { weekYear, day, weekday, daysInMonth, monthLong} = dateTime;
-                                            let localDay = DateTime.local().day;
+            {visibleWeeks.map(dateTime => { const { weekYear, day, year, month, weekday, daysInMonth} = dateTime;
+                                            let local = DateTime.local();
                                             let firstDayWeek = day - (weekday-1);
                                             let lastDayWeek = firstDayWeek + 6;
                                             //console.log(targetDateTime);
@@ -88,10 +100,16 @@ export default class WeeklyCalendar extends Component {
                                             if (firstDayWeek < 1) {
                                               firstDayWeek = firstDayWeek + DateTime.local().daysInMonth;
                                             }
-                                            if( localDay === day )
-                                            return <th className="WeeklyCalendar-table-tr-th-local">Dal {String(firstDayWeek)} al {String(lastDayWeek)} {String(monthLong)} {String(weekYear)}</th>;
+                                            if( local.day === day && local.year === year && local.month === month )
+                                              if(firstDayWeek > lastDayWeek)
+                                                return <th className="WeeklyCalendar-table-tr-th-local">Dal {String(firstDayWeek)}/{String(month)} al {String(lastDayWeek)}/{String(month+1)} {String(weekYear)}</th>;
+                                              else
+                                                return <th className="WeeklyCalendar-table-tr-th-local">Dal {String(firstDayWeek)}/{String(month)} al {String(lastDayWeek)}/{String(month)} {String(weekYear)}</th>;
                                             else
-                                            return <th>Dal {String(firstDayWeek)} al {String(lastDayWeek)} {String(monthLong)} {String(weekYear)}</th>;
+                                              if(firstDayWeek > lastDayWeek)
+                                                return <th>Dal {String(firstDayWeek)}/{String(month)} al {String(lastDayWeek)}/{String(month+1)} {String(weekYear)}</th>;
+                                              else
+                                                return <th>Dal {String(firstDayWeek)}/{String(month)} al {String(lastDayWeek)}/{String(month)} {String(weekYear)}</th>;
                                           })
             }
             <th onClick={this.handleMoveForward}>
@@ -104,7 +122,7 @@ export default class WeeklyCalendar extends Component {
         <tbody>
           {rows.map(row =>
                     <tr>
-                      <td><button onClick={ () => removeUser(row.name, row.id) } className="Delete-Button">Elimina</button> {renderRowLabel(row)}</td>
+                      <td><IconButton onClick={ () => removeUser(row.name, row.id) }><DeleteIcon/></IconButton> {renderRowLabel(row)}</td>
                       {visibleWeeks.map(d => (<td className="Td-week" onClick={ () => addPlan(d.weekYear, d.weekNumber, row.id) } >{renderWeekCell(row, d.weekYear, d.weekNumber)}</td>))}
                       <td>--</td>
                     </tr>
