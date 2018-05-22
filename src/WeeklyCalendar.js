@@ -19,21 +19,33 @@ export default class WeeklyCalendar extends Component {
     targetDateTime: DateTime.local()
   };
 
-  handleMoveBackward = event => {
+  handleMoveBackward = (event) => {
     const { targetDateTime } = this.state;
 
     this.setState({
       targetDateTime: targetDateTime.minus({ week: 1 })
     });
-  };
+  }
 
-  handleMoveForward = event => {
+  handleMoveForward = (event) => {
     const { targetDateTime } = this.state;
 
     this.setState({
       targetDateTime: targetDateTime.plus({ week: 1 })
     });
-  };
+  }
+
+  keyPressed = (e) => {
+    //console.log(e.key);
+    if(e.key === 'ArrowRight'){
+      this.handleMoveForward(e);
+    }
+    else if(e.key === 'ArrowLeft'){
+      this.handleMoveBackward(e);
+    }
+    else
+      return;
+  }
 
   render() {
 
@@ -56,7 +68,7 @@ export default class WeeklyCalendar extends Component {
     }
 
     return <div className="WeeklyCalendar">
-      <table className="WeeklyCalendar-table">
+      <table className="WeeklyCalendar-table" onKeyDown={this.keyPressed} tabIndex="0">
         <thead>
           <tr>
             <th onClick={this.handleMoveBackward}>
