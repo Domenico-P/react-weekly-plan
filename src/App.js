@@ -66,25 +66,8 @@ class App extends Component {
     }
   }
 
-  removeUsers = (name, id) => {
-      const { humans } = this.state;
-      var pos=-1;
-
-      for(var i = 0; i<humans.length; i++ ){
-        if(humans[i].id === id){
-          pos=i;
-          break;
-        }
-      }
-      var sliced = humans.slice(0,pos);
-      var list = [];
-      var k = 0;
-      for(i = pos+1; i<humans.length; i++ ){
-        list[k]=humans[i];
-        k++;
-      }
-      var newList = sliced.concat(list);
-      this.setState({ humans: newList });
+  removeUser = (name, id) => {
+    this.setState(({ humans }) => ({ humans: (humans).filter(user => (user.id !== id)) }));
   }
 
   render() {
@@ -106,7 +89,7 @@ class App extends Component {
           renderWeekCell={(row, weekYear, weekNumber) =>
             this.findPlans(row.id, weekYear, weekNumber).map(plan => plan.project)}
           addPlan = { (weekYear, weekNumber, id) => this.addNewPlan(weekYear, weekNumber, id) }
-          removeUser = { (name, id) => this.removeUsers(name, id) }
+          removeUser = { (name, id) => this.removeUser(name, id) }
         />
       </div>
     );
