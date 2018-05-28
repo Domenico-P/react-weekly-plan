@@ -124,7 +124,7 @@ export default class WeeklyCalendar extends Component {
                     <tr>
                       <td><IconButton onClick={ () => removeUser(row.name, row.id) }><DeleteIcon/></IconButton> {renderRowLabel(row)}</td>
                       {visibleWeeks.map(d => (<td id="dropZone" className="Td-week" onClick={ () => addPlan(d.weekYear, d.weekNumber, row.id) } >{renderWeekCell(row, d.weekYear, d.weekNumber)}</td>))}
-                      <td>--</td>
+                      <td className="Td-week-empty"></td>
                     </tr>
                     )}
         </tbody>

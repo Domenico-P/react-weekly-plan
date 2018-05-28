@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
 import WeeklyCalendar from './WeeklyCalendar';
-import Button from '@material-ui/core/Button';
 
 class Plan extends Component {
 
@@ -20,8 +19,16 @@ class Plan extends Component {
 
 class App extends Component {
   state = {
-    humans: [ ],
-    plans: [ ],
+    humans: [
+      { id: 1, name: 'Domenico' },
+      { id: 2, name: 'Pier' },
+      { id: 3, name: 'Gianpietro' },
+      { id: 4, name: 'Carlo' },
+      { id: 5, name: 'Roberto' }
+    ],
+    plans: [
+      //{ id: 1, assignee: 1, weekYear: 2018, weekNumber: 21, project: <Plan namePlan={'Project-1'}/> },
+    ],
     valueBefore: 1,
     valueAfter: 1
   };
@@ -81,7 +88,7 @@ class App extends Component {
     if( name === null || name === "")
       return;
     else
-      this.setState( ({ humans }) => ({ humans: (humans).concat( {id: index + 1 , name: name} ) }) ); //TODO bug user con id uguale // RISOLTO
+      this.setState( ({ humans }) => ({ humans: (humans).concat( {id: index + 1 , name: name} ) }) );
   }
 
   addWeeksView = () => {
@@ -115,9 +122,9 @@ class App extends Component {
           <h1 className="App-title">Calendar planner</h1>
         </header>
         <div className="App-bar">
-          <Button variant="raised" mini color="default" onClick={this.addNewUser}>Add user</Button>
-          <Button variant="raised" mini color="default" onClick={this.removeWeeksView}>Zoom +</Button>
-          <Button variant="raised" mini color="default" onClick={this.addWeeksView}>Zoom -</Button>
+          <button className="App-button" onClick={this.addNewUser}><img className="App-button-icon" src="img/addUser.png" width="20px" height="20px"/></button>
+          <button className="App-button" onClick={this.removeWeeksView}><img className="App-button-icon" src="img/zoom-in.png" width="20px" height="20px"/></button>
+          <button className="App-button" onClick={this.addWeeksView}><img className="App-button-icon" src="img/zoom-out.png" width="20px" height="20px"/></button>
         </div>
         <WeeklyCalendar
           rows={this.state.humans}

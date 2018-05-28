@@ -40,11 +40,18 @@ table thead tr th:first-child:hover, table thead tr th:last-child:hover {
   z-index: 0;
 }
 
+.Td-week-empty {
+  background-color: white;
+}
+
 .Td-week:hover {
   background-color: #add8e6;
-  opacity: 0.3;
   cursor: pointer;
   z-index: 0;
+}
+
+.WeeklyCalendar-table:focus {
+  outline: none;
 }
 
 .Delete-Button {
