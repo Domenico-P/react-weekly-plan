@@ -69,7 +69,7 @@ export default class WeeklyCalendar extends Component {
       overscanBefore,
       overscanAfter,
       addPlan,
-      removeUser
+      removeUser,
     } = this.props;
 
     const { targetDateTime } = this.state;
@@ -123,7 +123,7 @@ export default class WeeklyCalendar extends Component {
           {rows.map(row =>
                     <tr>
                       <td><IconButton onClick={ () => removeUser(row.name, row.id) }><DeleteIcon/></IconButton> {renderRowLabel(row)}</td>
-                      {visibleWeeks.map(d => (<td className="Td-week" onClick={ () => addPlan(d.weekYear, d.weekNumber, row.id) } >{renderWeekCell(row, d.weekYear, d.weekNumber)}</td>))}
+                      {visibleWeeks.map(d => (<td id="dropZone" className="Td-week" onClick={ () => addPlan(d.weekYear, d.weekNumber, row.id) } >{renderWeekCell(row, d.weekYear, d.weekNumber)}</td>))}
                       <td>--</td>
                     </tr>
                     )}
