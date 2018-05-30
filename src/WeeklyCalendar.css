@@ -18,7 +18,7 @@
 }
 
 .WeeklyCalendar-table-tr-th-local {
-  background-color: #add8e6;
+  background-color: #73BCE8;
 }
 
 table thead tr th:first-child, table thead tr th:last-child {
@@ -27,7 +27,7 @@ table thead tr th:first-child, table thead tr th:last-child {
 }
 
 table thead tr th:first-child:hover, table thead tr th:last-child:hover {
-  color: #add8e6;
+  color: #73BCE8;
   text-align: center;
   cursor: pointer;
 }
@@ -45,7 +45,7 @@ table thead tr th:first-child:hover, table thead tr th:last-child:hover {
 }
 
 .Td-week:hover {
-  background-color: #add8e6;
+  background-color: #C5E5FF;
   cursor: pointer;
   z-index: 0;
 }

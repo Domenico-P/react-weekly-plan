@@ -19,7 +19,7 @@
     margin-right: 5px;
     width: 60px;
     height: 40px;
-    background-color: #add8e6;
+    background-color: #C5E5FF;
     border-radius: 3px;
     box-shadow: 3px 3px 5px 0px #6d6d6d;
     cursor: pointer;
@@ -52,7 +52,7 @@
 }
 
 .Single-Plan:hover {
-  background-color: yellow;
+  background-color: #efe586;
   z-index: 1;
   margin: 5px;
   padding: 6px;
