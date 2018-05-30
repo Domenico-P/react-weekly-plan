@@ -1,2 +1,2 @@
 # react-weekly-plan
-![Image](relative/path/to/img.jpg?raw=true "Title")
+![Image](weekly-planner.png?raw=true "Title")
