@@ -99,7 +99,7 @@ export default class WeeklyCalendar extends Component {
           id="scroll"
           className="WeeklyCalendar-table"
           onKeyDown={this.keyPressed}
-          onWheel={this.scrollChange}
+          //onWheel={this.scrollChange}
           tabIndex="0"
         >
           <thead>
@@ -199,7 +199,7 @@ export default class WeeklyCalendar extends Component {
           <tbody>
             {rows.map(row => (
               <tr>
-                <td>
+                <td className="Td-UserName">
                   <IconButton onClick={() => removeUser(row.name, row.id)}>
                     <DeleteIcon />
                   </IconButton>{" "}

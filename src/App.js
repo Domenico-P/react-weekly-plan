@@ -4,6 +4,16 @@ import WeeklyCalendar from "./WeeklyCalendar";
 import AddUsersDialog from "./AddUsersDialog";
 //import AddPlansDialog from "./AddPlansDialog";
 import AddPlanDialog from "./AddPlanDialog";
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import Button from '@material-ui/core/Button';
+import AddIcon from '@material-ui/icons/Add';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import Tooltip from '@material-ui/core/Tooltip';
 
 class Plan extends Component {
   static defaultProps = {
@@ -215,35 +225,43 @@ class App extends Component {
   render() {
     return (
       <div>
-        <header className="App-header">
-          <h1 className="App-title">Calendar planner</h1>
-        </header>
-        <div className="App-bar">
-          <button className="App-button" onClick={this.openAddUsersDialog}>
-            <img
-              className="App-button-icon"
-              src="img/addUser.png"
-              width="20px"
-              height="20px"
-            />
-          </button>
-          <button className="App-button" onClick={this.removeWeeksView}>
-            <img
-              className="App-button-icon"
-              src="img/zoom-in.png"
-              width="20px"
-              height="20px"
-            />
-          </button>
-          <button className="App-button" onClick={this.addWeeksView}>
-            <img
-              className="App-button-icon"
-              src="img/zoom-out.png"
-              width="20px"
-              height="20px"
-            />
-          </button>
-        </div>
+        <AppBar position="static" color="default">
+        <header className="Header"><h3 className="Header-title">Weekly calendar planner</h3></header>
+          <Toolbar className="Toolbar">
+            <div className="App-bar">
+              <Tooltip id="tooltip-icon" title="Add new users">
+                  <Button color="primary" onClick={this.openAddUsersDialog}>
+                      <img
+                        className="App-button-icon"
+                        src="img/addUser.png"
+                        width="20px"
+                        height="20px"
+                      />
+                  </Button>
+              </Tooltip>
+              <Tooltip id="tooltip-icon" title="Zoom +">
+                  <Button color="primary" onClick={this.removeWeeksView}>
+                    <img
+                      className="App-button-icon"
+                      src="img/zoom-in.png"
+                      width="20px"
+                      height="20px"
+                    />
+                  </Button>
+              </Tooltip>
+              <Tooltip id="tooltip-icon" title="Zoom -">
+                  <Button color="primary" onClick={this.addWeeksView}>
+                    <img
+                      className="App-button-icon"
+                      src="img/zoom-out.png"
+                      width="20px"
+                      height="20px"
+                  />
+                  </Button>
+              </Tooltip>
+            </div>
+          </Toolbar>
+        </AppBar>
         <WeeklyCalendar
           rows={this.state.humans}
           overscanBefore={this.state.valueBefore}

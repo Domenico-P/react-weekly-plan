@@ -1,10 +1,12 @@
 .WeeklyCalendar {
   background: #eee;
+  margin-left: 20px;
 }
 
 .WeeklyCalendar-table {
   width: 100%;
   border-collapse: collapse;
+  margin-top: 20px;
 }
 
 .WeeklyCalendar-table th {
@@ -23,7 +25,6 @@
 
 table thead tr th:first-child, table thead tr th:last-child {
   background-color: white;
-  width: 135px;
 }
 
 table thead tr th:first-child:hover, table thead tr th:last-child:hover {
@@ -34,10 +35,6 @@ table thead tr th:first-child:hover, table thead tr th:last-child:hover {
 
 .App-title {
   text-align: center;
-}
-
-.Td_week {
-  z-index: 0;
 }
 
 .Td-week-empty {

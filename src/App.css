@@ -1,18 +1,13 @@
-.App-bar {
-  width: auto;
-  height: auto;
-  padding: 10px;
-  margin: 10px;
+.Header{
+  background-color: #eeeeee;
 }
 
-.App-button {
-    margin-right: 5px;
-    width: 60px;
-    height: 40px;
-    background-color: #eeeeee;
-    border-radius: 3px;
-    box-shadow: 3px 3px 5px 0px #6d6d6d;;
-    cursor: pointer;
+.Header-title {
+  text-align: center;
+}
+
+.Toolbar {
+  background-color: #eeeeee;
 }
 
 .App-button:hover {

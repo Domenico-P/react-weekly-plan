@@ -5,7 +5,6 @@ import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 
 export default class AddUsersDialog extends Component {
@@ -42,22 +41,5 @@ export default class AddUsersDialog extends Component {
         </form>
       </Dialog>
     );
-
-    /*
-    if(!this.props.show)
-        return null;
-
-    return (
-      <div className="Modal">
-        <div className="Modal-content">
-          <h3>Inserisci il nome del nuovo utente: </h3>
-          <div className="Input"><input type="text" onChange={this.handleChange} placeholder="User name"/></div><br/>
-          <div className="Button-close">
-            <button onClick={() => this.props.addNewUser(this.state.newName)}>Aggiungi</button>
-            <button onClick={this.props.closeAddUsersDialog}>Annulla</button>
-          </div>
-        </div>
-      </div>
-    );*/
   }
 }
